@@ -1,0 +1,9 @@
+
+name : Oksana
+age : 28
+age : 18
+city : Ternopil
+name : Ira
+city : Kyiv
+
+

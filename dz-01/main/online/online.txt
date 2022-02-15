@@ -1,0 +1,16 @@
+
+name : Andrii
+age : 22
+name : Pedro
+age : 21
+city : Lviv
+city : Chicago
+
+
+age : 22
+name : Andrii
+age : 21
+name : Pedro
+city : Chicago
+city : Lviv
+
