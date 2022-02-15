@@ -79,38 +79,38 @@ const fs = require("fs");
 // Коли ви це виконаєте напишіть функцію яка буде міняти місцями юзерів з одного файлу і папки в іншу.
 // (ті, що були в папці inPerson будуть в папці online)
 
-fs.readFile(path.join(__dirname, "main", "online", "online.txt"),
-    "utf8",
-    (err1, data1) => {
-        if (err1) {
-            console.log(err1);
-            throw err1;
-        }
-        fs.readFile(path.join(__dirname, "main", "inPerson", "inPerson.txt"),
-            "utf8",
-            (err2, data2) => {
-                if (err2) {
-                    console.log(err2);
-                    throw err2;
-                }
-                fs.writeFile(path.join(__dirname, "main", "online", "online.txt"),
-                    `${data2}`,
-                    {flag: "w"},
-                    (err) => {
-                        console.log(err)
-                    }
-                )
-                fs.writeFile(path.join(__dirname, "main", "inPerson", "inPerson.txt"),
-                    `${data1}`,
-                    {flag: "w"},
-                    (err) => {
-                        console.log(err)
-                    }
-                )
-            }
-        )
-    }
-)
+// fs.readFile(path.join(__dirname, "main", "online", "online.txt"),
+//     "utf8",
+//     (err1, data1) => {
+//         if (err1) {
+//             console.log(err1);
+//             throw err1;
+//         }
+//         fs.readFile(path.join(__dirname, "main", "inPerson", "inPerson.txt"),
+//             "utf8",
+//             (err2, data2) => {
+//                 if (err2) {
+//                     console.log(err2);
+//                     throw err2;
+//                 }
+//                 fs.writeFile(path.join(__dirname, "main", "online", "online.txt"),
+//                     `${data2}`,
+//                     {flag: "w"},
+//                     (err) => {
+//                         console.log(err)
+//                     }
+//                 )
+//                 fs.writeFile(path.join(__dirname, "main", "inPerson", "inPerson.txt"),
+//                     `${data1}`,
+//                     {flag: "w"},
+//                     (err) => {
+//                         console.log(err)
+//                     }
+//                 )
+//             }
+//         )
+//     }
+// )
 
 
 
