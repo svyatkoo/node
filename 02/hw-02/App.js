@@ -15,11 +15,10 @@ const express = require("express");
 const app = express();
 const {engine} = require("express-handlebars");
 
-// const {urlencoded} = require("express");
-
 app.use(express.json());
-app.use(express.urlencoded({extended: true})); ///
+app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "static")));
+
 app.set("view engine", ".hbs");
 app.engine(".hbs", engine({defaultLayout: false}));
 app.set("views", path.join(__dirname, "static"));
@@ -36,34 +35,6 @@ const users = [
 ];
 app.get("/login", (req, res) => {
     res.render("loginPage");
-    // console.log(res.query)
-})
-
-app.get("/users", (req, res) => {
-    if (req.query.age && req.query.city) {
-        const filteredUsers = users.filter(user => user.age === req.query.age && user.city === req.query.city);
-        res.render("usersPage", {filteredUsers});
-    }
-    if (req.query.city) {
-        const filteredUsers = users.filter(user => user.city === req.query.city);
-        res.render("usersPage", {filteredUsers});
-    }
-    if (req.query.age) {
-        const filteredUsers = users.filter(user => user.age === req.query.age);
-        res.render("usersPage", {filteredUsers});
-    }
-    if (!req.query.city) {
-        res.render("usersPage", {users});
-    }
-})
-
-app.get("/errPage", (req, res) => {
-    res.render("errPage");
-})
-
-app.get("/users/:userId", (req, res) => {
-    const {userId} = req.params;
-    res.json(users[userId]);
 })
 
 app.post("/login", (req, res) => {
@@ -80,8 +51,38 @@ app.post("/login", (req, res) => {
     }
 });
 
+app.get("/users", (req, res) => {
+    if (req.query.age && req.query.city) {
+        const filteredUsers = users.filter(user => user.age === req.query.age && user.city === req.query.city);
+        res.render("usersPage", {users: filteredUsers});
+        return;
+    }
+    if (req.query.city) {
+        const filteredUsers = users.filter(user => user.city === req.query.city);
+        res.render("usersPage", {users: filteredUsers});
+        return;
+    }
+    if (req.query.age) {
+        console.log("age");
+        console.log(req.query);
+        const filteredUsers = users.filter(user => user.age === req.query.age);
+        res.render("usersPage", {users: filteredUsers});
+        return;
+    }
+    res.render("usersPage", {users});
+});
+
+app.get("/users/:userId", (req, res) => {
+    const {userId} = req.params;
+    res.json(users[userId]);
+});
+
+app.get("/errPage", (req, res) => {
+    res.render("errPage");
+});
+
 app.use((req, res) => {
     res.render("notFoundPage");
 });
 
-app.listen(4200, () => console.log("start"));
+app.listen(5100, () => console.log("start"));
