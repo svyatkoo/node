@@ -11,14 +11,16 @@
 
 {{#each users}}
     <div>
-        <div>index:{{@index}}</div>
+<!--        <div>index:{{@index}}</div>-->
+        <div>index:{{this.id}}</div>
         <div>firstName:{{this.firstName}}</div>
         <div>lastName:{{this.lastName}}</div>
         <div>email:{{this.email}}</div>
         <div>password:{{this.password}}</div>
         <div>age:{{this.age}}</div>
         <div>city:{{this.city}}</div>
-        <a href="/users/{{@index}}">INFO</a>
+<!--        <a href="/users/{{@index}}">INFO</a>-->
+        <a href="/users/{{this.id}}">INFO</a>
         <hr>
     </div>
 {{/each}}

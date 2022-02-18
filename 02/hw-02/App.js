@@ -25,6 +25,7 @@ app.set("views", path.join(__dirname, "static"));
 
 const users = [
     {
+        id: 1,
         firstName: 'Taras',
         lastName: 'Levutsky',
         email: 'svyatkoo@gmail.com',
@@ -33,6 +34,7 @@ const users = [
         city: 'Lviv'
     }
 ];
+
 app.get("/login", (req, res) => {
     res.render("loginPage");
 })
@@ -46,7 +48,7 @@ app.post("/login", (req, res) => {
         }
     })
     if (flag) {
-        users.push(req.body);
+        users.push({...req.body, id: users.length ? users.length + 1 : 1});
         res.redirect("/users");
     }
 });
@@ -73,9 +75,37 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/users/:userId", (req, res) => {
-    const {userId} = req.params;
-    res.json(users[userId]);
+    const user = users.find(user => user.id === +req.params.userId);
+    res.render("userInfoPage", {user});
 });
+
+
+
+app.get("/sign", (req, res) => {
+    res.render("signInPage");
+})
+
+app.post("/sign", (req, res) => {
+    if (req.body.email && req.body.password) {
+        const user = users.find(user => user.email === req.body.email && user.password === req.body.password);
+        res.redirect(`/users/${user.id}`);
+        return;
+    }
+    res.render("errEnter");
+});
+
+
+
+
+
+// app.post("/delete", (req, res) => {
+//     const users = users.filter(user => user.id === +req.params.userId);
+//     res.redirect("/users");
+// });
+
+
+
+
 
 app.get("/errPage", (req, res) => {
     res.render("errPage");
