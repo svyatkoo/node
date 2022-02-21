@@ -2,7 +2,7 @@ const users = require("../db/users");
 
 class LoginControllers {
     renderLoginPage(req, res) {
-        res.render("loginPage");
+        res.render('loginPage');
     }
 
     checkEmailAndLoginUser(req, res){
@@ -10,13 +10,13 @@ class LoginControllers {
         users.forEach(user => {
             if (user.email === req.body.email) {
                 flag = false;
-                res.redirect("/errPage");
+                res.redirect('/errPage');
             }
         });
 
         if (flag) {
             users.push({...req.body, id: users.length ? users.length + 1 : 1});
-            res.redirect("/users");
+            res.redirect('/users');
         }
     }
 

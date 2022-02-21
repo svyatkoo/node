@@ -2,7 +2,7 @@ function loginFullData(req, res, next){
     try {
         const {firstName, lastName, email, password, age, city} = req.body;
         if (!firstName || !lastName || !email || !password || !age || !city) {
-            throw new Error("All data are required!");
+            throw new Error('All data are required!');
         };
 
         next();

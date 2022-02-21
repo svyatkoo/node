@@ -1,8 +1,8 @@
-const users = require("../db/users");
+const users = require('../db/users');
 
 class SignController {
     renderSignInPage(req, res) {
-        res.render("signInPage");
+        res.render('signInPage');
     };
 
     signInUser(req, res) {
@@ -12,7 +12,7 @@ class SignController {
             return;
         }
 
-        res.render("errEnter");
+        res.render('errEnter');
     }
 };
 
