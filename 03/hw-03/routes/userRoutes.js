@@ -6,5 +6,7 @@ userRouter.get('/', userController.renderUsers);
 
 userRouter.get('/:userId', userController.renderUserById);
 
+userRouter.post('/:userId', userController.deleteUser);
+
 
 module.exports = userRouter;

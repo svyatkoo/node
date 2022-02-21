@@ -16,6 +16,9 @@ INFO PAGE
         <div>password:{{user.password}}</div>
         <div>age:{{user.age}}</div>
         <div>city:{{user.city}}</div>
+        <form action='/users/{{user.id}}' method='post'>
+            <input type='submit' value='Delete'>
+        </form>
     </div>
 </body>
 </html>
